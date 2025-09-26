@@ -7,20 +7,20 @@ https://maventa.com/
 https://www.odoo.com/ (tested with odoo 18)
 
 maventa2odoo is a command line tool. 
-The tool intended to be run periodically (e.g. crontab).
+The tool is intended to be run periodically (e.g. crontab) or it can be used as a library.
 
 Features: 
-- send e-invoices from odoo
-- receive e-invoices to odoo
+- send e-invoices (finvoice 3.0) from odoo
+- receive e-invoices (finvoice xxx) to odoo
 - supports attachments in both directions
 
 Internally the tool will:
-- pull invoices from odoo and send the to maventa
+- pull invoices from odoo and send them to maventa
 - pull (incoiming) invoices from maventa and add them to odoo
 - attachments are supported
 - internally uses finvoice xml version 3.0
 
-Run on command line:
+Run as command line:
 maventa2odoo -c maventa2odoo.conf
 
 **Configuration**
