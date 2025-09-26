@@ -23,3 +23,25 @@ Run on command line:
 maventa2odoo -c maventa2odoo.conf
 
 **Configuration**
+<pre>
+{
+    "profiles": [
+        {
+            "name": "Comapny name One",                            => name of profile usually company name, only used for debugging
+            "maventa_client_id": "User API key",                   => get this from maventa or from me 
+            "maventa_client_secret": "Company UUID key",           => get this from maventa or from me
+            "maventa_vendor_api_key": "Vendor API key",            => get this from maventa or from me
+
+            "odoo_url": "https://xxx-url-db-237848.dev.odoo.com/", => this your odoo server url
+            "odoo_db": "db-237848",                                => odoo database id
+            "odoo_username": "my_user@mydomain.com",               => odoo user name 
+            "odoo_api_key": "odoo api key",                        => odoo api key
+            "odoo_company_id": 2                                   => odoo company id 
+        },
+        {
+         ....                                                      => other profiles in case you have many companies
+        }
+    ]
+    
+}
+</pre>
