@@ -3,7 +3,8 @@
 A tool that integrates Maventa invoicing with Odoo invoicing.
 
 https://maventa.com/
-https://www.odoo.com/
+
+https://www.odoo.com/ (tested with odoo 18)
 
 maventa2odoo is a command line tool. 
 The tool intended to be run periodically (e.g. crontab).
