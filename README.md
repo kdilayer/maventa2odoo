@@ -4,7 +4,7 @@ A tool that integrates Maventa invoicing with Odoo invoicing.
 
 https://maventa.com/
 
-https://www.odoo.com/ (tested with odoo 18)
+https://www.odoo.com/ (tested with odoo 18, enterprise version, odoo.sh)
 
 maventa2odoo is a command line tool. 
 The tool is intended to be run periodically (e.g. crontab) or it can be used as a library.
@@ -20,6 +20,7 @@ Internally the tool will:
 - attachments are supported
 - internally uses finvoice xml version 3.0
 
+
 Run as command line:
 maventa2odoo -c maventa2odoo.conf
 
@@ -33,7 +34,7 @@ maventa2odoo -c maventa2odoo.conf
             "maventa_client_secret": "Company UUID key",           => get this from maventa or ask
             "maventa_vendor_api_key": "Vendor API key",            => get this from maventa or ask
 
-            "odoo_url": "https://xxx-url-db-237848.dev.odoo.com/", => this your odoo server url
+            "odoo_url": "https://xxx-url-db-237848.dev.odoo.com/", => this is your odoo server url
             "odoo_db": "db-237848",                                => odoo database id
             "odoo_username": "my_user@mydomain.com",               => odoo user name 
             "odoo_api_key": "odoo api key",                        => odoo api key
