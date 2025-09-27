@@ -1,3 +1,24 @@
+/*
+ * Copyright (c) 2025 @https://github.com/kdilayer
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to
+ * deal in the Software without restriction, including without limitation the
+ * rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+ * sell copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+ * IN THE SOFTWARE.
+ */
 #include "maventa_api.h"
 #include <curl/curl.h>
 #include <iostream>
@@ -182,20 +203,7 @@ std::string iso_8859_15_to_utf8(const std::string& input) {
 }
 
 int MaventaAPI::processReceivedInvoices(std::string profilename, std::function<bool (FinvoiceInvoice &invoice)> processInvoiceCallback, int lastHowManyDays) {
-#if 0 // For debugging, use static file
-    std::string invoice_id="1234567890"; // Example invoice ID
-    std::vector<FinvoiceInvoice> invoices;
-    FinvoiceInvoice finvoice_invoice;
-    std::string inv_xml = ReadFileContent("/home/kari/maventa_invoice.xml"); // Example path
-    if(inv_xml.empty()) {
-        LOG(ERROR) << "Failed to read invoice XML file.";
-        return 0;
-    }
-    
-    finvoice_invoice.parseFromXml(inv_xml);
-    finvoice_invoice.setEIOInvoiceIdentifier(invoice_id);
-    return processInvoiceCallback(finvoice_invoice) ? 1 : 0;
-#endif    
+   
     int invoicesAddedCount = 0;
     if (tokenValid() == false) {
         LOG(ERROR) << "No access token available for invoice request.";

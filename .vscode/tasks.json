@@ -7,9 +7,6 @@
         "linux": {
           "command": "make", 
         },
-        "windows": {
-          "command": "d:\\kari\\dobuild.bat ${workspaceFolder}/build/flow.sln"
-        },
         "group": {
           "kind": "build",
           "isDefault": true

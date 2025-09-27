@@ -1,3 +1,24 @@
+/*
+ * Copyright (c) 2025 @https://github.com/kdilayer
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to
+ * deal in the Software without restriction, including without limitation the
+ * rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+ * sell copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+ * IN THE SOFTWARE.
+ */
 #include "odoo_api.h"
 #include <iostream>
 #include <map>
@@ -1171,47 +1192,7 @@ bool OdooAPI::updateDomainField(std::string domain, int domain_id, const std::st
     return false;
 }
 int OdooAPI::processUnsentInvoices(std::function<std::string (const rapidjson::Value& entry, std::string odoo_maventa_status, std::string maventa_invoice_identifier, FinvoiceInvoice &invoice, bool &send_confirmed, std::string &send_error_msg)> processInvoiceCallback, int lastHowManyDays) {
-#if 0 // For debugging, use static file
-    
-    std::string inv_json = ReadFileContent("/home/kari/dev/nreal/tools/maventa2odoo/odoo_invoice.json"); // Example path
-
-    rapidjson::Document docx;
-    rapidjson::ParseResult iok = docx.Parse(inv_json.c_str());
-
-    for (rapidjson::SizeType i = 0; i < docx.Size(); ++i) {
-        const rapidjson::Value& entry = docx[i];
-        std::string x_studio_eio_invoice_identifier="";
-        std::string x_studio_eio_ovt="";
-        if (entry.IsObject()) {
-            if(entry.HasMember("x_studio_eio_invoice_identifier")) {
-                if(entry["x_studio_eio_invoice_identifier"].IsString())
-                    x_studio_eio_invoice_identifier = entry["x_studio_eio_invoice_identifier"].GetString();
-                if(entry["x_studio_eio_invoice_identifier"].IsBool())
-                    x_studio_eio_invoice_identifier="";
-            }
-            if(entry.HasMember("x_studio_eio_ovt") && entry["x_studio_eio_ovt"].IsString()) {
-                x_studio_eio_ovt = entry["x_studio_eio_ovt"].GetString();
-            }
-            if(x_studio_eio_invoice_identifier == "" && x_studio_eio_ovt !="") {
-                FinvoiceInvoice invoice;
-                if(OdooInvoiceToFinvoice(entry, invoice)) {
-                    // Call the callback function to process the invoice
-                    std::vector<FinvoiceAttachment> attachments; // No attachments in this case
-                    if(!processInvoiceCallback(invoice, attachments)) {
-                        LOG(ERROR) << "Processing invoice callback failed for invoice: " << invoice.InvoiceNumber << std::endl;
-                        return -1; // Stop processing on callback failure
-                    }
-                }
-                else {
-                    LOG(ERROR) << "Failed to convert Odoo invoice to Finvoice: " << invoice.InvoiceNumber << std::endl;
-                }
-
-            }
-            
-        }
-    }
-   
-#endif    
+    // Find unsent invoices
     std::vector<xmlrpc_c::value> filters;
     add_filter(&filters, "move_type", "=", "out_invoice");
     add_filter(&filters, "x_studio_maventa_status", "=", "sending");
